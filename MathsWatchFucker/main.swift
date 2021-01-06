@@ -2,10 +2,12 @@
 //  main.swift
 //  MathsWatchFucker
 //
-//  Created by Charlie While on 05/01/2021.
+//  Created by AW on 05/01/2021.
 //
 
 import Foundation
 
-print("Hello, World!")
-
+let qap = QAP()
+qap.parseHomework(questionResponse: questionsDict)
+qap.parseAnswers()
+qap.printInfoFancily()

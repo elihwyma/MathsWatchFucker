@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E14CEA4B25E679C2005D8ADC /* MathsWatchLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14CEA4A25E679C2005D8ADC /* MathsWatchLogin.swift */; };
+		E14CEA4F25E67A15005D8ADC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14CEA4E25E67A15005D8ADC /* NetworkManager.swift */; };
 		E159211025A4C9A300293499 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E159210F25A4C9A300293499 /* main.swift */; };
-		E159211825A4C9F000293499 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E159211725A4C9EF00293499 /* NetworkManager.swift */; };
 		E159211B25A4CDA000293499 /* QuestionAnswerParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E159211A25A4CDA000293499 /* QuestionAnswerParser.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,9 +26,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E14CEA4A25E679C2005D8ADC /* MathsWatchLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathsWatchLogin.swift; sourceTree = "<group>"; };
+		E14CEA4E25E67A15005D8ADC /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		E159210C25A4C9A300293499 /* MathsWatchFucker */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MathsWatchFucker; sourceTree = BUILT_PRODUCTS_DIR; };
 		E159210F25A4C9A300293499 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		E159211725A4C9EF00293499 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		E159211A25A4CDA000293499 /* QuestionAnswerParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAnswerParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,8 +64,9 @@
 			isa = PBXGroup;
 			children = (
 				E159210F25A4C9A300293499 /* main.swift */,
-				E159211725A4C9EF00293499 /* NetworkManager.swift */,
 				E159211A25A4CDA000293499 /* QuestionAnswerParser.swift */,
+				E14CEA4E25E67A15005D8ADC /* NetworkManager.swift */,
+				E14CEA4A25E679C2005D8ADC /* MathsWatchLogin.swift */,
 			);
 			path = MathsWatchFucker;
 			sourceTree = "<group>";
@@ -125,8 +128,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E14CEA4F25E67A15005D8ADC /* NetworkManager.swift in Sources */,
 				E159211B25A4CDA000293499 /* QuestionAnswerParser.swift in Sources */,
-				E159211825A4C9F000293499 /* NetworkManager.swift in Sources */,
+				E14CEA4B25E679C2005D8ADC /* MathsWatchLogin.swift in Sources */,
 				E159211025A4C9A300293499 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

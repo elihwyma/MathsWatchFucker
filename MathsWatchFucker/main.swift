@@ -7,12 +7,19 @@
 
 import Foundation
 
-let logins: [String] = [:]
+let logins = [
+    ""
+]
+
 let password = ""
 
-var buffer = 0
+let masterUser = ""
+let masterPassword = ""
+
 let mlm = MathsWatchLoginManager()
-mlm.id = 4932106
+mlm.id = 1
+
+var buffer = 0
 func work() {
     mlm.hahauwufuckyou(username: logins[buffer], password: password, {(success, dict) -> Void in
         if success {
@@ -23,9 +30,9 @@ func work() {
         buffer += 1
         if buffer == logins.count  {
             print("User \(logins[buffer - 1]) had the best mark with \(QAP.shared.cachedBestScore)")
-            QAP.shared.parseHomework()
-            QAP.shared.parseAnswers()
-            QAP.shared.printInfoFancily()
+            mlm.hahauwucatgirls(username: masterUser, password: masterPassword, {(success, dict) -> Void in
+                print("\(masterUser) now has \(QAP.shared.cachedBestScore) marks")
+            })
             return
         }
         work()

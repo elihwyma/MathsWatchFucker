@@ -18,7 +18,6 @@ class MathsWatchLoginManager {
                 "password" : password
             ]
             NetworkManager.requestWithSettingCookies(url: "https://vle.mathswatch.co.uk/duocms/api/login", requestMethod: "POST", headers: nil, body: body, completion: {(success, dict) -> Void in
-
                 if let message = dict["message"] as? String { if message == "You are logged in on too many computers. Please log off your last machine or try again in an hour." { fatalError("You fucking idiot, you're rate limited") } }
                 NetworkManager.requestWithSettingCookies(url: "https://vle.mathswatch.co.uk/duocms/api/assignedwork/student?recent=true", requestMethod: "GET", headers: nil, body: nil, completion: {(sucess, dict) -> Void in
                     let data = dict["data"] as? [[String : Any]] ?? [[String : Any]]()
@@ -39,6 +38,40 @@ class MathsWatchLoginManager {
                         return completionHandler(true, nil)
                     }
                 })
+            })
+        })
+    }
+    
+    public func hahauwucatgirls(username: String, password: String, _ completionHandler: @escaping completionHandler) {
+        NetworkManager.requestWithSettingCookies(url: "https://vle.mathswatch.co.uk/duocms/api/users/me", requestMethod: "GET", headers: nil, body: nil, completion: {(sucess, dict) -> Void in
+            let body: [String : Any] = [
+                "username" : username,
+                "password" : password
+            ]
+            NetworkManager.requestWithSettingCookies(url: "https://vle.mathswatch.co.uk/duocms/api/login", requestMethod: "POST", headers: nil, body: body, completion: {(success, dict) -> Void in
+                if let message = dict["message"] as? String { if message == "You are logged in on too many computers. Please log off your last machine or try again in an hour." { fatalError("You fucking idiot, you're rate limited") } }
+                NetworkManager.requestWithSettingCookies(url: "https://vle.mathswatch.co.uk/duocms/api/answers?assignedwork_id=\(self.id)", requestMethod: "GET", headers: nil, body: nil, completion: {(success, dict) -> Void in
+                    guard let wap = QAP.shared.cachedBestAnswer else { return completionHandler(false, "Failed to parse the answers" )}
+                    for bigchungus in wap {
+                        guard let question_id = bigchungus["question_id"] as? Int else { return }
+                        var dick: [String : Any] = [
+                            "correct" : bigchungus["correct"] ?? false,
+                            "timeused" : bigchungus["timeused"] ?? 5,
+                            "question_id" : question_id,
+                            "assignedwork_id" : self.id
+                        ]
+                        guard let answer = bigchungus["answer"] as? [[String : Any]] else { fatalError("FUCKING JDHKJHHAFKJDASHFDSAB") }
+                        dick["answer"] = answer
+                        NetworkManager.requestWithSettingCookies(url: "https://vle.mathswatch.co.uk/duocms/api/answers", requestMethod: "POST", headers: nil, body: dick, completion: {(sucess, dict) -> Void in
+                            if success {
+                                print("Set answer for question \(question_id)")
+                            } else {
+                                print("Network request failed for setting \(question_id)")
+                            }
+                        })
+                    }
+                })
+                completionHandler(true, nil)
             })
         })
     }

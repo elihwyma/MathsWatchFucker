@@ -30,6 +30,7 @@ func scrapeEveryone() {
         buffer += 1
         if buffer == logins.count  {
             generateTheBestAnswer()
+            //generateWrongAnswer()
             applyToMaster()
             return
         }
@@ -77,6 +78,21 @@ func generateTheBestAnswer() {
             cba[index] = owo
         }
     }
+}
+
+func generateWrongAnswer() {
+    guard var cba = QAP.shared.cachedBestAnswer else { return }
+    for (index, id) in cba.enumerated() {
+        guard let answer = id["answer"] as? [[String : Any]] else { continue }
+        var emptyAnswers = [[String : Any]]()
+        for cum in answer {
+            var owo = cum
+            owo["text"] = "0"
+            emptyAnswers.append(owo)
+        }
+        cba[index]["answer"] = emptyAnswers
+    }
+    QAP.shared.cachedBestAnswer = cba
 }
 
 scrapeEveryone()

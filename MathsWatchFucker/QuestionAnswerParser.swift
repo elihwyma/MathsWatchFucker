@@ -18,7 +18,7 @@ struct Question {
     var id: Int!
     var marks: Int!
     var answers = [Answer]()
-    
+
     init(id: Int) {
         self.id = id
     }
@@ -36,6 +36,8 @@ class QAP {
     var cachedBestAnswer: [[String : Any]]?
     var cachedBestQuestion: [String : Any]?
     var cachedBestScore = 0
+    
+    var cachedAnswers = [[[String : Any]]]()
     
     var homework = Homework()
 

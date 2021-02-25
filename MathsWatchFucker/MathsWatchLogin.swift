@@ -23,20 +23,19 @@ class MathsWatchLoginManager {
                     let data = dict["data"] as? [[String : Any]] ?? [[String : Any]]()
                     guard let homework: [String : Any] = data.first(where: { $0["id"] as! Int == self.id }) else { return completionHandler(false, "Failed to find homework for \(username)") }
                     guard let mark = homework["student_marks"] as? Int else { return completionHandler(true, "Student has no mark") }
-                    if mark > QAP.shared.cachedBestScore {
+                    if mark == 0 { return completionHandler(true, "Student has a score of 0, waste of my time")}
+                    if QAP.shared.cachedBestQuestion == nil {
                         NetworkManager.requestWithSettingCookies(url: "https://vle.mathswatch.co.uk/duocms/api/assignedwork/\(self.id)?id=\(self.id)", requestMethod: "GET", headers: nil, body: nil, completion: {(success, dict) -> Void in
                             QAP.shared.cachedBestQuestion = dict["data"] as? [String : Any] ?? [String : Any]()
-                            NetworkManager.requestWithSettingCookies(url: "https://vle.mathswatch.co.uk/duocms/api/answers?assignedwork_id=\(self.id)", requestMethod: "GET", headers: nil, body: nil, completion: {(success, dict) -> Void in
-                                QAP.shared.cachedBestAnswer = dict["data"] as? [[String : Any]] ?? [[String : Any]]()
-                                QAP.shared.cachedBestScore = mark
-                                NetworkManager.requestWithSettingCookies(url: "https://vle.mathswatch.co.uk/duocms/api/logout", requestMethod: "GET", headers: nil	, body: nil, completion: {(success, dict) -> Void in
-                                    return completionHandler(true, nil)
-                                })
-                            })
+                            print("Got the question")
                         })
-                    } else {
-                        return completionHandler(true, nil)
                     }
+                    NetworkManager.requestWithSettingCookies(url: "https://vle.mathswatch.co.uk/duocms/api/answers?assignedwork_id=\(self.id)", requestMethod: "GET", headers: nil, body: nil, completion: {(success, dict) -> Void in
+                        QAP.shared.cachedAnswers.append(dict["data"] as? [[String : Any]] ?? [[String : Any]]())
+                        NetworkManager.requestWithSettingCookies(url: "https://vle.mathswatch.co.uk/duocms/api/logout", requestMethod: "GET", headers: nil    , body: nil, completion: {(success, dict) -> Void in
+                            return completionHandler(true, "Got everything quite happily from a student :)")
+                        })
+                    })
                 })
             })
         })
